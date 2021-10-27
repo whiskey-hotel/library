@@ -12,18 +12,26 @@ function book(title, author, pages) {
 	this.read = false;
 }
 
-function addBooks() {
-	const newBook = Object.create(book);
-	newBook.title = prompt('Please enter the title of the book');
-	newBook.author = prompt('Please enter the full name of the author');
-	newBook.pages = prompt('Number of pages');
-	myLibrary.push(newBook);
+book.prototype.addBooks = function (obj) {
+	myLibrary.push(obj);
+	console.log(myLibrary);
+	document.getElementById('form-container').style.display = 'none';
+	return;
+};
+
+function removeBook(dataAttribute, el, childEl) {
+	const index = parseInt(dataAttribute);
+	if (index > -1) {
+		myLibrary.splice(index, 1);
+		el.removeChild(childEl);
+	}
 }
 
 function display() {
-	myLibrary.forEach((book) => {
+	myLibrary.forEach((book, index) => {
 		const bookDetails = document.createElement('div');
 		bookDetails.classList.add('book');
+		bookDetails.setAttribute('data-value', index);
 
 		const bookTitle = document.createElement('div');
 		bookTitle.textContent = book.title;
@@ -36,14 +44,44 @@ function display() {
 
 		const bookRead = document.createElement('div');
 
+		const delBook = document.createElement('button');
+		delBook.onclick = function () {
+			removeBook(bookDetails.dataset.value, container, bookDetails);
+		};
+		delBook.textContent = 'Remove Book';
+
 		container.appendChild(bookDetails);
 		bookDetails.appendChild(bookTitle);
 		bookDetails.appendChild(bookAuthor);
 		bookDetails.appendChild(bookPages);
 		bookDetails.appendChild(bookRead);
+		bookDetails.appendChild(delBook);
 		console.log(book);
 	});
 }
 
-// addBooks();
+function openForm() {
+	document.getElementById('form-container').style.display = 'block';
+}
+
+function closeForm() {
+	document.getElementById('form-container').style.display = 'none';
+}
+
+const subBtn = document.getElementById('subBtn');
+const clBtn = document.getElementById('clBtn');
+
+subBtn.addEventListener('click', function () {
+	const titleValue = document.getElementById('title').value;
+	const authorValue = document.getElementById('author').value;
+	const pagesValue = document.getElementById('pages').value;
+	const newBook = new book(titleValue, authorValue, pagesValue);
+	newBook.addBooks(newBook);
+	display();
+});
+
+clBtn.addEventListener('click', () => {
+	closeForm();
+});
+
 display();

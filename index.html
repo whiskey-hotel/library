@@ -9,6 +9,17 @@
 		<script src="./scripts/main.js" defer></script>
 	</head>
 	<body>
-		<div id="container"></div>
+		<div id="container">
+			<button onclick="openForm()">Add a book</button>
+			<div id="form-container">
+				<form id="add-book">
+					<input type="text" id="title" name="title" placeholder="Title" required />
+					<input type="text" id="author" name="author" placeholder="Author" required />
+					<input type="text" id="pages" name="pages" placeholder="Number of Pages" />
+					<button type="button" id="subBtn">Submit</button>
+					<button type="button" id="clBtn">Close</button>
+				</form>
+			</div>
+		</div>
 	</body>
 </html>
