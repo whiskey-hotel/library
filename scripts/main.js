@@ -5,6 +5,10 @@ let myLibrary = [
 	{ title: 'The Outsiders', author: 'S.E. Hinton', pages: 270 },
 ];
 
+myLibrary.forEach((book, index) => {
+	display(book, index);
+});
+
 function book(title, author, pages) {
 	this.title = title;
 	this.author = author;
@@ -27,37 +31,35 @@ function removeBook(dataAttribute, el, childEl) {
 	}
 }
 
-function display() {
-	myLibrary.forEach((book, index) => {
-		const bookDetails = document.createElement('div');
-		bookDetails.classList.add('book');
-		bookDetails.setAttribute('data-value', index);
+function display(book, index) {
+	const bookDetails = document.createElement('div');
+	bookDetails.classList.add('book');
+	bookDetails.setAttribute('data-value', index);
 
-		const bookTitle = document.createElement('div');
-		bookTitle.textContent = book.title;
+	const bookTitle = document.createElement('div');
+	bookTitle.textContent = book.title;
 
-		const bookAuthor = document.createElement('div');
-		bookAuthor.textContent = book.author;
+	const bookAuthor = document.createElement('div');
+	bookAuthor.textContent = book.author;
 
-		const bookPages = document.createElement('div');
-		bookPages.textContent = book.pages;
+	const bookPages = document.createElement('div');
+	bookPages.textContent = book.pages;
 
-		const bookRead = document.createElement('div');
+	const bookRead = document.createElement('div');
 
-		const delBook = document.createElement('button');
-		delBook.onclick = function () {
-			removeBook(bookDetails.dataset.value, container, bookDetails);
-		};
-		delBook.textContent = 'Remove Book';
+	const delBook = document.createElement('button');
+	delBook.onclick = function () {
+		removeBook(bookDetails.dataset.value, container, bookDetails);
+	};
+	delBook.textContent = 'Remove Book';
 
-		container.appendChild(bookDetails);
-		bookDetails.appendChild(bookTitle);
-		bookDetails.appendChild(bookAuthor);
-		bookDetails.appendChild(bookPages);
-		bookDetails.appendChild(bookRead);
-		bookDetails.appendChild(delBook);
-		console.log(book);
-	});
+	container.appendChild(bookDetails);
+	bookDetails.appendChild(bookTitle);
+	bookDetails.appendChild(bookAuthor);
+	bookDetails.appendChild(bookPages);
+	bookDetails.appendChild(bookRead);
+	bookDetails.appendChild(delBook);
+	console.log(book);
 }
 
 function openForm() {
@@ -77,11 +79,9 @@ subBtn.addEventListener('click', function () {
 	const pagesValue = document.getElementById('pages').value;
 	const newBook = new book(titleValue, authorValue, pagesValue);
 	newBook.addBooks(newBook);
-	display();
+	display(newBook, myLibrary.length + 1);
 });
 
 clBtn.addEventListener('click', () => {
 	closeForm();
 });
-
-display();
