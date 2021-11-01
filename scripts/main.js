@@ -1,8 +1,12 @@
 const container = document.querySelector("#container");
 
 let myLibrary = [
-	{ title: "Harry Potter", author: "JK Rowling", pages: 356, read: false },
-	{ title: "The Outsiders", author: "S.E. Hinton", pages: 270, read: false },
+	{ title: "Harry Potter and the Chamber of Secrets", author: "JK Rowling", pages: 251, read: false },
+	{ title: "Harry Potter and the Sorcerer's Stone", author: "JK Rowling", pages: 223, read: false },
+	{ title: "Harry Potter and the Prisoner of Azkaban", author: "JK Rowling", pages: 317, read: false },
+	{ title: "Harry Potter and the Goblet of Fire", author: "JK Rowling", pages: 636, read: false },
+	{ title: "Harry Potter and the Order of the Phoenix", author: "JK Rowling", pages: 766, read: false },
+	{ title: "The Outsiders", author: "S.E. Hinton", pages: 192, read: false },
 ];
 
 myLibrary.forEach((book, index) => {
@@ -44,6 +48,8 @@ function display(book, index) {
 	const bookPages = document.createElement("div");
 	bookPages.textContent = book.pages;
 
+	const brk = document.createElement("br");
+
 	const bookRead = document.createElement("button");
 	bookRead.onclick = () => {
 		book.read = !book.read;
@@ -51,15 +57,17 @@ function display(book, index) {
 	bookRead.textContent = "Read?";
 
 	const delBook = document.createElement("button");
+	delBook.classList.add("remove-book");
 	delBook.onclick = function () {
 		removeBook(bookDetails.dataset.value, container, bookDetails);
 	};
-	delBook.textContent = "Remove Book";
+	delBook.textContent = ":";
 
 	container.appendChild(bookDetails);
 	bookDetails.appendChild(bookTitle);
 	bookDetails.appendChild(bookAuthor);
 	bookDetails.appendChild(bookPages);
+	bookDetails.appendChild(brk);
 	bookDetails.appendChild(bookRead);
 	bookDetails.appendChild(delBook);
 }

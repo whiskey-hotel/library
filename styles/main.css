@@ -1,12 +1,40 @@
-#container{
+#container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1em;
+}
+
+#add-book{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.book {
+    position: relative;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+	border: black 1px solid;
+    height: 14em;
+    width: 12em;
+    background-color: rgba(3, 169, 244, 0.3);
+    border-radius: 10px;
+    box-shadow: 6px 7px 6px rgba(32, 33, 36, 0.28);
 }
 
-.book{
-    border: black 1px solid;
+.remove-book{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    padding: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
 }
 
-#form-container{
-    display: none;
+#form-container {
+	display: none;
 }
