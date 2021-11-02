@@ -4,35 +4,36 @@
 	gap: 1em;
 }
 
-#add-book{
-    position: absolute;
-    top: 0;
-    right: 0;
+#add-book {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 .book {
-    position: relative;
-    display: flex;
-    flex-direction: column;
+	position: relative;
+	display: flex;
+	flex-direction: column;
 	border: black 1px solid;
-    height: 14em;
-    width: 12em;
-    background-color: rgba(3, 169, 244, 0.3);
-    border-radius: 10px;
-    box-shadow: 6px 7px 6px rgba(32, 33, 36, 0.28);
+	height: 14em;
+	width: 12em;
+	background-color: rgba(3, 169, 244, 0.3);
+	border-radius: 10px;
+	box-shadow: 6px 7px 6px rgba(32, 33, 36, 0.28);
 }
 
-.remove-book{
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 0;
-    padding: 0;
-    font-size: 2rem;
-    font-weight: bold;
-    border: none;
-    background-color: inherit;
-    cursor: pointer;
+.remove-book {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 0;
+	padding: 0;
+	margin-right: 1rem;
+	font-size: 2rem;
+	font-weight: bold;
+	border: none;
+	background-color: inherit;
+	cursor: pointer;
 }
 
 #form-container {

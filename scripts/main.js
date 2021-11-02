@@ -56,12 +56,31 @@ function display(book, index) {
 	};
 	bookRead.textContent = "Read?";
 
-	const delBook = document.createElement("button");
-	delBook.classList.add("remove-book");
-	delBook.onclick = function () {
+	// create delete button symbol
+	const delBook1 = document.createElement("button");
+	delBook1.textContent = ":";
+	delBook1.classList.add("remove-book");
+
+	//create hidden delete button
+	const delBook2 = document.createElement("button");
+	delBook2.textContent = "Remove Book";
+	delBook2.style.display = "none";
+
+	delBook1.addEventListener("click", () => {
+		delBook2.style.display = "block";
+	});
+
+	delBook2.addEventListener("click", () => {
 		removeBook(bookDetails.dataset.value, container, bookDetails);
-	};
-	delBook.textContent = ":";
+		delBook2.style.display = "none";
+	});
+
+	//close delete button if click is not on the button
+	document.addEventListener("click", (e) => {
+		if (!delBook1.contains(e.target)) {
+			delBook2.style.display = "none";
+		}
+	});
 
 	container.appendChild(bookDetails);
 	bookDetails.appendChild(bookTitle);
@@ -69,7 +88,8 @@ function display(book, index) {
 	bookDetails.appendChild(bookPages);
 	bookDetails.appendChild(brk);
 	bookDetails.appendChild(bookRead);
-	bookDetails.appendChild(delBook);
+	bookDetails.appendChild(delBook1);
+	bookDetails.appendChild(delBook2);
 }
 
 function openForm() {
