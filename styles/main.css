@@ -1,3 +1,8 @@
+:root{
+        --clr-blue: rgba(3, 169, 244, 0.3);
+        --shadow-neutral: rgba(32, 33, 36, 0.28);
+}
+
 #container {
 	display: flex;
 	flex-wrap: wrap;
@@ -8,6 +13,7 @@
 	position: absolute;
 	top: 0;
 	right: 0;
+    cursor: pointer;
 }
 
 .book {
@@ -17,9 +23,15 @@
 	border: black 1px solid;
 	height: 14em;
 	width: 12em;
-	background-color: rgba(3, 169, 244, 0.3);
+	background-color: var(--clr-blue);
 	border-radius: 10px;
-	box-shadow: 6px 7px 6px rgba(32, 33, 36, 0.28);
+	box-shadow: 5px 6px 6px var(--shadow-neutral);
+}
+
+.book:hover,
+.book:focus{
+    box-shadow: 0 4px 6px 4px var(--clr-blue);
+    
 }
 
 .remove-book {
