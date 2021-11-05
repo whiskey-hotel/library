@@ -22,7 +22,7 @@ function book(title, author, pages) {
 
 book.prototype.addBooks = function (obj) {
 	myLibrary.push(obj);
-	document.getElementById("form-container").style.display = "none";
+	document.getElementById("form-section").style.display = "none";
 	return;
 };
 
@@ -51,6 +51,7 @@ function display(book, index) {
 	const brk = document.createElement("br");
 
 	const bookRead = document.createElement("button");
+	bookRead.setAttribute("id", "read-button");
 	bookRead.onclick = () => {
 		book.read = !book.read;
 	};
@@ -93,11 +94,11 @@ function display(book, index) {
 }
 
 function openForm() {
-	document.getElementById("form-container").style.display = "block";
+	document.getElementById("form-section").style.display = "flex";
 }
 
 function closeForm() {
-	document.getElementById("form-container").style.display = "none";
+	document.getElementById("form-section").style.display = "none";
 }
 
 const subBtn = document.getElementById("subBtn");

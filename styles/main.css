@@ -1,37 +1,73 @@
-:root{
-        --clr-blue: rgba(3, 169, 244, 0.3);
-        --shadow-neutral: rgba(32, 33, 36, 0.28);
+:root {
+	--clr-blue: rgba(3, 169, 244, 0.3);
+	--shadow-neutral: rgba(32, 33, 36, 0.28);
 }
 
 #container {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1em;
+    justify-content: center;
 }
 
-#add-book {
-	position: absolute;
-	top: 0;
-	right: 0;
-    cursor: pointer;
+#add-book-button {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+    font-size: 40px;
+	z-index: 999;
+	cursor: pointer;
 }
 
 .book {
-	position: relative;
-	display: flex;
+    position: relative;
 	flex-direction: column;
-	border: black 1px solid;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+	/* border: black 1px solid; */
 	height: 14em;
-	width: 12em;
+	width: 19em;
 	background-color: var(--clr-blue);
 	border-radius: 10px;
 	box-shadow: 5px 6px 6px var(--shadow-neutral);
+    transition: all 1s;
+}
+
+#form-section {
+    display: none;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+    z-index: 999;
+	background-color: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(4px);
+}
+
+#form-container {
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	width: 15em;
+	height: 19em;
+	
+	border: black 5px solid;
+	margin-right: auto;
+	margin-left: auto;
+    background-color: white;
+}
+
+#add-book {
+	display: flex;
+	flex-direction: column;
 }
 
 .book:hover,
-.book:focus{
-    box-shadow: 0 4px 6px 4px var(--clr-blue);
-    
+.book:focus {
+	box-shadow: 0 4px 6px 4px var(--clr-blue);
 }
 
 .remove-book {
@@ -48,6 +84,4 @@
 	cursor: pointer;
 }
 
-#form-container {
-	display: none;
-}
+
