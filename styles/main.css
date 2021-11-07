@@ -16,25 +16,22 @@
 	--font-regular: "Open Sans", sans-serif;
 
 	--check-height: 1.5em;
-	--check-width: calc(var(--check-height)/2);
+	--check-width: calc(var(--check-height) / 2);
 	--check-left: 8.5em;
 	--check-top: 12.5em;
 	--check-thickness: 3px;
 	--check-color: #5cb85c;
-	}
-
+}
 
 /* Table of Contents */
 /* 1. Header - Line 44 */
 /* 2. Container Layout - Line 75 */
 /* 3. Book layout - Line 84 */
-/* 4. New Book Button - Line 108 */
-/* 5. New book window - Line 120 */
-/* 6. New book form inputs - Line 147 */
-/* 7. Book Read Checkmark - Line 169  */
-
-
-
+/* 4. Read button Layout - Line  */
+/* 5. New Book Button - Line 108 */
+/* 6. New book window - Line 120 */
+/* 7. New book form inputs - Line 147 */
+/* 8. Book Read Checkmark - Line 169  */
 
 html,
 body {
@@ -87,7 +84,7 @@ body {
 	position: relative;
 	flex-direction: column;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	text-align: center;
 	font-weight: var(--font-weight-regular);
@@ -97,27 +94,49 @@ body {
 	border-radius: 10px;
 	box-shadow: 5px 6px 6px var(--shadow-neutral);
 	transition: all 1s;
+	/* white-space: pre; */
 }
 
 .book:hover,
 .book:focus {
 	box-shadow: 0 4px 6px 4px var(--clr-accent);
-	/* border: solid 5px var(--clr-accent); */
 }
 
-/* 4. New book button */
+/* 4. Read button Layout */
+
+#read-button{
+	width: 8em;
+	height: 3em;
+	background-color: var(--clr-accent);
+	color: #fff;
+	border-radius: 26px;
+	margin-top: auto;
+	margin-bottom: calc(var(--check-height)*2);;
+}
+
+/* 5. New book button */
 
 #add-book-button {
+	display: block;
 	position: fixed;
-	bottom: 20px;
-	right: 20px;
+	bottom: 25px;
+	right: 25px;
 	font-size: 40px;
 	z-index: 999;
 	cursor: pointer;
 	color: var(--clr-accent);
+	transition: 0.2s;
+	border-radius: 50%;
 }
 
-/* 5. New book window */
+#add-book-button:hover,
+#add-book-button:focus {
+	transform: rotate(90deg);
+	font-size: 50px;
+	box-shadow: 5px 6px 6px var(--shadow-neutral);
+}
+
+/* 6. New book window */
 
 #form-container {
 	display: flex;
@@ -144,13 +163,12 @@ body {
 	backdrop-filter: blur(4px);
 }
 
-/* 6. New book form inputs */
+/* 7. New book form inputs */
 
 #add-book {
 	display: flex;
 	flex-direction: column;
 }
-
 
 .remove-book {
 	position: absolute;
@@ -166,7 +184,7 @@ body {
 	cursor: pointer;
 }
 
-/* 7. Book Read Checkmark */
+/* 8. Book Read Checkmark */
 
 .checkmark {
 	display: none;
@@ -178,7 +196,7 @@ body {
 	animation-name: checkmark;
 	transform: scaleX(-1) rotate(135deg);
 }
-	
+
 .checkmark:after {
 	opacity: 1;
 	height: var(--check-height);
@@ -186,33 +204,31 @@ body {
 	transform-origin: left top;
 	border-right: var(--check-thickness) solid var(--check-color);
 	border-top: var(--check-thickness) solid var(--check-color);
-	content: '';
+	content: "";
 	left: var(--check-left);
 	top: var(--check-top);
 	position: absolute;
-	
 }
 
-  
 @keyframes checkmark {
 	0% {
-	  height: 0;
-	  width: 0;
-	  opacity: 1;
+		height: 0;
+		width: 0;
+		opacity: 1;
 	}
 	20% {
-	  height: 0;
-	  width: var(--check-width);
-	  opacity: 1;
+		height: 0;
+		width: var(--check-width);
+		opacity: 1;
 	}
 	40% {
-	  height: var(--check-height);
-	  width: var(--check-width);
-	  opacity: 1;
+		height: var(--check-height);
+		width: var(--check-width);
+		opacity: 1;
 	}
 	100% {
-	  height: var(--check-height);
-	  width: var(--check-width);
-	  opacity: 1;
+		height: var(--check-height);
+		width: var(--check-width);
+		opacity: 1;
 	}
-  }
+}

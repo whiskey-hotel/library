@@ -39,14 +39,19 @@ function display(book, index) {
 	bookDetails.classList.add("book");
 	bookDetails.setAttribute("data-value", index);
 
+	const bold = document.createElement("strong");
+	bold.textContent = "Title:";
+	bold.style.fontWeight = "900";
+	bold.style.fontSize = "1.25rem";
+
 	const bookTitle = document.createElement("div");
 	bookTitle.textContent = book.title;
 
 	const bookAuthor = document.createElement("div");
-	bookAuthor.textContent = book.author;
+	bookAuthor.textContent = `By: ${book.author}`;
 
 	const bookPages = document.createElement("div");
-	bookPages.textContent = book.pages;
+	bookPages.textContent = `${book.pages} Pages`;
 
 	const brk = document.createElement("br");
 
@@ -56,18 +61,38 @@ function display(book, index) {
 	check.classList.add("draw");
 
 	bookRead.setAttribute("id", "read-button");
+	bookRead.addEventListener("mouseover", () => {
+		bookRead.style.backgroundColor = "#5cb85c";
+	});
+	bookRead.addEventListener("mouseleave", () => {
+		bookRead.style.backgroundColor = "#7d2ae8";
+	});
+
 	bookRead.onclick = () => {
 		book.read = !book.read;
 
 		//animated checkmark for read books
 		if (book.read) {
 			check.style.display = "block";
+			bookRead.textContent = "Mark as unread";
+			bookRead.addEventListener("mouseover", () => {
+				bookRead.style.backgroundColor = "#D06079";
+			});
+			bookRead.addEventListener("mouseleave", () => {
+				bookRead.style.backgroundColor = "#7d2ae8";
+			});
 		} else {
 			check.style.display = "none";
+			bookRead.textContent = "Mark as read";
+			bookRead.addEventListener("mouseover", () => {
+				bookRead.style.backgroundColor = "#5cb85c";
+			});
+			bookRead.addEventListener("mouseleave", () => {
+				bookRead.style.backgroundColor = "#7d2ae8";
+			});
 		}
 	};
-	bookRead.textContent = "Read?";
-
+	bookRead.textContent = "Mark as read";
 
 	// create delete button symbol
 	const delBook1 = document.createElement("button");
@@ -96,6 +121,7 @@ function display(book, index) {
 	});
 
 	container.appendChild(bookDetails);
+	bookDetails.appendChild(bold);
 	bookDetails.appendChild(bookTitle);
 	bookDetails.appendChild(bookAuthor);
 	bookDetails.appendChild(bookPages);
