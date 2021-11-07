@@ -24,11 +24,24 @@
 	}
 
 
+/* Table of Contents */
+/* 1. Header - Line 44 */
+/* 2. Container Layout - Line 75 */
+/* 3. Book layout - Line 84 */
+/* 4. New Book Button - Line 108 */
+/* 5. New book window - Line 120 */
+/* 6. New book form inputs - Line 147 */
+/* 7. Book Read Checkmark - Line 169  */
+
+
+
 
 html,
 body {
 	font-family: var(--font-regular);
 }
+
+/*1. Header */
 
 .header {
 	display: flex;
@@ -59,6 +72,8 @@ body {
 	border: 2px solid #fff;
 }
 
+/* 2.Container Layout */
+
 #container {
 	display: flex;
 	flex-wrap: wrap;
@@ -66,15 +81,7 @@ body {
 	justify-content: center;
 }
 
-#add-book-button {
-	position: fixed;
-	bottom: 20px;
-	right: 20px;
-	font-size: 40px;
-	z-index: 999;
-	cursor: pointer;
-	color: var(--clr-accent);
-}
+/* 3. Book layout*/
 
 .book {
 	position: relative;
@@ -92,17 +99,25 @@ body {
 	transition: all 1s;
 }
 
-#form-section {
-	display: none;
-	width: 100vw;
-	height: 100vh;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 999;
-	background-color: rgba(0, 0, 0, 0.5);
-	backdrop-filter: blur(4px);
+.book:hover,
+.book:focus {
+	box-shadow: 0 4px 6px 4px var(--clr-accent);
+	/* border: solid 5px var(--clr-accent); */
 }
+
+/* 4. New book button */
+
+#add-book-button {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	font-size: 40px;
+	z-index: 999;
+	cursor: pointer;
+	color: var(--clr-accent);
+}
+
+/* 5. New book window */
 
 #form-container {
 	display: flex;
@@ -117,16 +132,25 @@ body {
 	background-color: white;
 }
 
+#form-section {
+	display: none;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	background-color: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(4px);
+}
+
+/* 6. New book form inputs */
+
 #add-book {
 	display: flex;
 	flex-direction: column;
 }
 
-.book:hover,
-.book:focus {
-	box-shadow: 0 4px 6px 4px var(--clr-accent);
-	/* border: solid 5px var(--clr-accent); */
-}
 
 .remove-book {
 	position: absolute;
@@ -142,9 +166,7 @@ body {
 	cursor: pointer;
 }
 
-
-/* Book Read Checkmark */
-
+/* 7. Book Read Checkmark */
 
 .checkmark {
 	display: none;
