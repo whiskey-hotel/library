@@ -51,11 +51,23 @@ function display(book, index) {
 	const brk = document.createElement("br");
 
 	const bookRead = document.createElement("button");
+	const check = document.createElement("div");
+	check.classList.add("checkmark");
+	check.classList.add("draw");
+
 	bookRead.setAttribute("id", "read-button");
 	bookRead.onclick = () => {
 		book.read = !book.read;
+
+		//animated checkmark for read books
+		if (book.read) {
+			check.style.display = "block";
+		} else {
+			check.style.display = "none";
+		}
 	};
 	bookRead.textContent = "Read?";
+
 
 	// create delete button symbol
 	const delBook1 = document.createElement("button");
@@ -91,6 +103,7 @@ function display(book, index) {
 	bookDetails.appendChild(bookRead);
 	bookDetails.appendChild(delBook1);
 	bookDetails.appendChild(delBook2);
+	bookDetails.appendChild(check);
 }
 
 function openForm() {

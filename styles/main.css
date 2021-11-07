@@ -1,48 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Courgette&family=Open+Sans:wght@300;400;500&display=swap");
+
 :root {
-	--clr-blue: rgba(3, 169, 244, 0.3);
+	--clr-neutral: #f8f9f9;
+	--clr-accent: #7d2ae8;
+	--clr-header-background: radial-gradient(100.99% 100.73% at 0 0, rgba(0, 196, 204, 0.725916) 0, #00c4cc 0.01%, rgba(0, 196, 204, 0) 100%),
+		radial-gradient(68.47% 129.02% at 22.82% 97.71%, #6420ff 0, rgba(100, 32, 255, 0) 100%),
+		radial-gradient(106.1% 249.18% at 0 0, #00c4cc 0, rgba(0, 196, 204, 0) 100%),
+		radial-gradient(64.14% 115.13% at 5.49% 50%, #6420ff 0, rgba(100, 32, 255, 0) 100%), #7d2ae7;
+
 	--shadow-neutral: rgba(32, 33, 36, 0.28);
+	--font-weight-light: 300;
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-italics: "Courgette", cursive;
+	--font-regular: "Open Sans", sans-serif;
+
+	--check-height: 1.5em;
+	--check-width: calc(var(--check-height)/2);
+	--check-left: 8.5em;
+	--check-top: 12.5em;
+	--check-thickness: 3px;
+	--check-color: #5cb85c;
+	}
+
+
+
+html,
+body {
+	font-family: var(--font-regular);
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	height: 15em;
+	max-width: 100%;
+	margin-bottom: 1em;
+	border-radius: 10px 10px 0 0;
+	color: #fff;
+	background: var(--clr-header-background);
+}
+
+#title {
+	font-family: var(--font-italics);
+	font-weight: var(--font-weight-medium);
+	font-size: 5.5rem;
+	margin-left: 0.75em;
+}
+
+#stats {
+	margin-left: auto;
+	margin-right: 1em;
+}
+
+#stat-box {
+	height: 5em;
+	width: 5em;
+	border: 2px solid #fff;
 }
 
 #container {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1em;
-    justify-content: center;
+	justify-content: center;
 }
 
 #add-book-button {
 	position: fixed;
 	bottom: 20px;
 	right: 20px;
-    font-size: 40px;
+	font-size: 40px;
 	z-index: 999;
 	cursor: pointer;
+	color: var(--clr-accent);
 }
 
 .book {
-    position: relative;
+	position: relative;
 	flex-direction: column;
 	display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-	/* border: black 1px solid; */
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-weight: var(--font-weight-regular);
 	height: 14em;
 	width: 19em;
-	background-color: var(--clr-blue);
+	background-color: var(--clr-neutral);
 	border-radius: 10px;
 	box-shadow: 5px 6px 6px var(--shadow-neutral);
-    transition: all 1s;
+	transition: all 1s;
 }
 
 #form-section {
-    display: none;
+	display: none;
 	width: 100vw;
 	height: 100vh;
 	position: fixed;
 	top: 0;
 	left: 0;
-    z-index: 999;
+	z-index: 999;
 	background-color: rgba(0, 0, 0, 0.5);
 	backdrop-filter: blur(4px);
 }
@@ -53,11 +110,11 @@
 	align-self: center;
 	width: 15em;
 	height: 19em;
-	
+
 	border: black 5px solid;
 	margin-right: auto;
 	margin-left: auto;
-    background-color: white;
+	background-color: white;
 }
 
 #add-book {
@@ -67,7 +124,8 @@
 
 .book:hover,
 .book:focus {
-	box-shadow: 0 4px 6px 4px var(--clr-blue);
+	box-shadow: 0 4px 6px 4px var(--clr-accent);
+	/* border: solid 5px var(--clr-accent); */
 }
 
 .remove-book {
@@ -85,3 +143,54 @@
 }
 
 
+/* Book Read Checkmark */
+
+
+.checkmark {
+	display: none;
+}
+
+.checkmark.draw:after {
+	animation-duration: 800ms;
+	animation-timing-function: ease;
+	animation-name: checkmark;
+	transform: scaleX(-1) rotate(135deg);
+}
+	
+.checkmark:after {
+	opacity: 1;
+	height: var(--check-height);
+	width: var(--check-width);
+	transform-origin: left top;
+	border-right: var(--check-thickness) solid var(--check-color);
+	border-top: var(--check-thickness) solid var(--check-color);
+	content: '';
+	left: var(--check-left);
+	top: var(--check-top);
+	position: absolute;
+	
+}
+
+  
+@keyframes checkmark {
+	0% {
+	  height: 0;
+	  width: 0;
+	  opacity: 1;
+	}
+	20% {
+	  height: 0;
+	  width: var(--check-width);
+	  opacity: 1;
+	}
+	40% {
+	  height: var(--check-height);
+	  width: var(--check-width);
+	  opacity: 1;
+	}
+	100% {
+	  height: var(--check-height);
+	  width: var(--check-width);
+	  opacity: 1;
+	}
+  }
