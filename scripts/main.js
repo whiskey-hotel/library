@@ -1,4 +1,7 @@
 const container = document.querySelector("#container");
+const newBookSection = document.getElementById("form-section");
+const newBookSubmitButton = document.getElementById("subBtn");
+const newBookCloseButton = document.getElementById("clBtn");
 
 let myLibrary = [
 	{ title: "Harry Potter and the Chamber of Secrets", author: "JK Rowling", pages: 251, read: false },
@@ -76,7 +79,7 @@ function display(book, index) {
 			check.style.display = "block";
 			bookRead.textContent = "Mark as unread";
 			bookRead.addEventListener("mouseover", () => {
-				bookRead.style.backgroundColor = "#D06079";
+				bookRead.style.backgroundColor = "#d11a2a";
 			});
 			bookRead.addEventListener("mouseleave", () => {
 				bookRead.style.backgroundColor = "#7d2ae8";
@@ -95,28 +98,29 @@ function display(book, index) {
 	bookRead.textContent = "Mark as read";
 
 	// create delete button symbol
-	const delBook1 = document.createElement("button");
-	delBook1.textContent = ":";
-	delBook1.classList.add("remove-book");
+	const delBookIcon = document.createElement("button");
+	delBookIcon.textContent = ":";
+	delBookIcon.classList.add("remove-book");
 
 	//create hidden delete button
-	const delBook2 = document.createElement("button");
-	delBook2.textContent = "Remove Book";
-	delBook2.style.display = "none";
+	const delBookButton = document.createElement("button");
+	delBookButton.textContent = "Remove Book";
+	delBookButton.setAttribute("id", "bookDeleteButton")
+	delBookButton.style.display = "none";
 
-	delBook1.addEventListener("click", () => {
-		delBook2.style.display = "block";
+	delBookIcon.addEventListener("click", () => {
+		delBookButton.style.display = "block";
 	});
 
-	delBook2.addEventListener("click", () => {
+	delBookButton.addEventListener("click", () => {
 		removeBook(bookDetails.dataset.value, container, bookDetails);
-		delBook2.style.display = "none";
+		delBookButton.style.display = "none";
 	});
 
 	//close delete button if click is not on the button
 	document.addEventListener("click", (e) => {
-		if (!delBook1.contains(e.target)) {
-			delBook2.style.display = "none";
+		if (!delBookIcon.contains(e.target)) {
+			delBookButton.style.display = "none";
 		}
 	});
 
@@ -127,23 +131,28 @@ function display(book, index) {
 	bookDetails.appendChild(bookPages);
 	bookDetails.appendChild(brk);
 	bookDetails.appendChild(bookRead);
-	bookDetails.appendChild(delBook1);
-	bookDetails.appendChild(delBook2);
+	bookDetails.appendChild(delBookIcon);
+	bookDetails.appendChild(delBookButton);
 	bookDetails.appendChild(check);
 }
 
 function openForm() {
-	document.getElementById("form-section").style.display = "flex";
+	newBookSection.style.display = "flex";
 }
 
 function closeForm() {
-	document.getElementById("form-section").style.display = "none";
+	newBookSection.style.display = "none";
 }
 
-const subBtn = document.getElementById("subBtn");
-const clBtn = document.getElementById("clBtn");
+//close "add new book" window if click is not on the form window
+newBookSection.addEventListener("click", (e) => {
+	if (!document.getElementById("form-container").contains(e.target)) {
+		newBookSection.style.display = "none";
+	}
+});
 
-subBtn.addEventListener("click", function () {
+
+newBookSubmitButton.addEventListener("click", function () {
 	const titleValue = document.getElementById("title").value;
 	const authorValue = document.getElementById("author").value;
 	const pagesValue = document.getElementById("pages").value;
@@ -152,6 +161,6 @@ subBtn.addEventListener("click", function () {
 	display(newBook, myLibrary.length + 1);
 });
 
-clBtn.addEventListener("click", () => {
+newBookCloseButton.addEventListener("click", () => {
 	closeForm();
 });

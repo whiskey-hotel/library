@@ -102,7 +102,7 @@ body {
 	box-shadow: 0 4px 6px 4px var(--clr-accent);
 }
 
-/* 4. Read button Layout */
+/* 3.1 Read button Layout */
 
 #read-button{
 	width: 8em;
@@ -112,6 +112,15 @@ body {
 	border-radius: 26px;
 	margin-top: auto;
 	margin-bottom: calc(var(--check-height)*2);;
+}
+
+/* 3.2 Delete book button layout */
+
+#bookDeleteButton{
+	position: relative;
+	bottom: 167px;
+	left: 181px;
+
 }
 
 /* 5. New book button */
@@ -163,6 +172,23 @@ body {
 	backdrop-filter: blur(4px);
 }
 
+#newBookBtnTitle{
+
+}
+
+#clBtn{
+	position: relative;
+	bottom: 187px;
+	left: 241px;
+	font-size: 2rem;
+	color: #fff;
+	cursor: pointer;
+
+}
+
+#clBtn:hover{
+	color: #d11a2a;
+}
 /* 7. New book form inputs */
 
 #add-book {

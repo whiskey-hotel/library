@@ -25,11 +25,17 @@
 			<section id="form-section">
 				<div id="form-container">
 					<form id="add-book">
-						<input type="text" id="title" name="title" placeholder="Title" required />
+						<label for="newBookBtnTitle">Title:</label>
+						<input type="text" id="newBookBtnTitle" name="title" placeholder="Title" required />
+
+						<label for="author">Author:</label>
 						<input type="text" id="author" name="author" placeholder="Author" required />
+
+						<label for="pages">Number of Pages:</label>
 						<input type="text" id="pages" name="pages" placeholder="Number of Pages" />
+
 						<button type="button" id="subBtn">Submit</button>
-						<button type="button" id="clBtn">Close</button>
+						<span type="button" id="clBtn" class="material-icons-outlined"> clear </span>
 					</form>
 				</div>
 			</section>
