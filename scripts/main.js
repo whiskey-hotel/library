@@ -25,6 +25,20 @@ function book(title, author, pages) {
 	this.read = false;
 }
 
+book.prototype.bookCount = function () {
+	return myLibrary.length;
+};
+
+book.prototype.readBookCount = function () {
+	let count = 0;
+	myLibrary.forEach((index) => {
+		if (myLibrary[index].read) {
+			count += 1;
+		}
+	});
+	return count;
+};
+
 book.prototype.addBooks = function (obj) {
 	myLibrary.push(obj);
 	document.getElementById("form-section").style.display = "none";
@@ -107,7 +121,7 @@ function display(book, index) {
 	//create hidden delete button
 	const delBookButton = document.createElement("button");
 	delBookButton.textContent = "Remove Book";
-	delBookButton.setAttribute("id", "bookDeleteButton")
+	delBookButton.setAttribute("id", "bookDeleteButton");
 	delBookButton.style.display = "none";
 
 	delBookIcon.addEventListener("click", () => {
@@ -153,7 +167,6 @@ newBookSection.addEventListener("click", (e) => {
 	}
 });
 
-
 newBookSubmitButton.addEventListener("click", function () {
 	const titleValue = document.getElementById("newBookBtnTitle").value;
 	const authorValue = document.getElementById("author").value;
@@ -161,10 +174,10 @@ newBookSubmitButton.addEventListener("click", function () {
 	const newBook = new book(titleValue, authorValue, pagesValue);
 	newBook.addBooks(newBook);
 	display(newBook, myLibrary.length + 1);
-	document.getElementById("add-book").reset()
+	document.getElementById("add-book").reset();
+	newBook.totalBooks()
 });
 
 newBookCloseButton.addEventListener("click", () => {
 	closeForm();
 });
-
