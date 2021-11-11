@@ -1,4 +1,5 @@
 const container = document.querySelector("#container");
+const dataAtts = document.getElementsByClassName("book");
 const totalBooks = document.getElementById("total-books");
 const readBooks = document.getElementById("read-books");
 const newBookSection = document.getElementById("form-section");
@@ -18,6 +19,9 @@ myLibrary.forEach((book, index) => {
 	display(book, index);
 });
 
+totalBooks.textContent = bookCount(myLibrary);
+readBooks.textContent = readBookCount(myLibrary);
+
 function book(title, author, pages) {
 	this.title = title;
 	this.author = author;
@@ -25,25 +29,33 @@ function book(title, author, pages) {
 	this.read = false;
 }
 
-book.prototype.bookCount = function () {
-	return myLibrary.length;
-};
+function bookCount(obj) {
+	return obj.length;
+}
 
-book.prototype.readBookCount = function () {
+function readBookCount(obj) {
 	let count = 0;
-	myLibrary.forEach((index) => {
-		if (myLibrary[index].read) {
+	obj.forEach((index) => {
+		if (index.read) {
 			count += 1;
 		}
 	});
 	return count;
-};
+}
 
-book.prototype.addBooks = function (obj) {
-	myLibrary.push(obj);
+book.prototype.addBooks = function (bookObj) {
+	myLibrary.push(bookObj);
 	document.getElementById("form-section").style.display = "none";
 	return;
 };
+
+function dataAttributeUpdate() {
+	let count = 0;
+	for (let d of Array.from(dataAtts)) {
+		d.dataset.value = count;
+		count += 1;
+	}
+}
 
 function removeBook(dataAttribute, el, childEl) {
 	const index = parseInt(dataAttribute);
@@ -51,6 +63,9 @@ function removeBook(dataAttribute, el, childEl) {
 		myLibrary.splice(index, 1);
 		el.removeChild(childEl);
 	}
+	totalBooks.textContent = bookCount(myLibrary);
+	readBooks.textContent = readBookCount(myLibrary);
+	dataAttributeUpdate();
 }
 
 function display(book, index) {
@@ -89,6 +104,7 @@ function display(book, index) {
 
 	bookRead.onclick = () => {
 		book.read = !book.read;
+		readBooks.textContent = readBookCount(myLibrary);
 
 		//animated checkmark for read books
 		if (book.read) {
@@ -167,15 +183,15 @@ newBookSection.addEventListener("click", (e) => {
 	}
 });
 
-newBookSubmitButton.addEventListener("click", function () {
+newBookSubmitButton.addEventListener("submit", function () {
 	const titleValue = document.getElementById("newBookBtnTitle").value;
 	const authorValue = document.getElementById("author").value;
 	const pagesValue = document.getElementById("pages").value;
 	const newBook = new book(titleValue, authorValue, pagesValue);
 	newBook.addBooks(newBook);
-	display(newBook, myLibrary.length + 1);
+	display(newBook, myLibrary.length - 1);
 	document.getElementById("add-book").reset();
-	newBook.totalBooks()
+	totalBooks.textContent = bookCount(myLibrary);
 });
 
 newBookCloseButton.addEventListener("click", () => {
