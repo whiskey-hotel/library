@@ -64,9 +64,12 @@ body {
 }
 
 #stat-box {
-	height: 5em;
-	width: 5em;
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	width: fit-content;
 	border: 2px solid #fff;
+	white-space: nowrap;
 }
 
 /* 2.Container Layout */
@@ -104,23 +107,14 @@ body {
 
 /* 3.1 Read button Layout */
 
-#read-button{
+#read-button {
 	width: 8em;
 	height: 3em;
 	background-color: var(--clr-accent);
 	color: #fff;
 	border-radius: 26px;
 	margin-top: auto;
-	margin-bottom: calc(var(--check-height)*2);;
-}
-
-/* 3.2 Delete book button layout */
-
-#bookDeleteButton{
-	position: relative;
-	bottom: 167px;
-	left: 181px;
-
+	margin-bottom: calc(var(--check-height) * 2);
 }
 
 /* 5. New book button */
@@ -142,7 +136,8 @@ body {
 #add-book-button:focus {
 	transform: rotate(90deg);
 	font-size: 50px;
-	box-shadow: 5px 6px 6px var(--shadow-neutral);
+	/* box-shadow: 5px 6px 6px var(--shadow-neutral); */
+	filter: drop-shadow(5px 6px 6px var(--shadow-neutral));
 }
 
 /* 6. New book window */
@@ -152,7 +147,7 @@ body {
 	flex-direction: column;
 	align-self: center;
 	width: 15em;
-	height: 19em;
+	height: fit-content;
 
 	border: black 5px solid;
 	margin-right: auto;
@@ -171,22 +166,47 @@ body {
 	background-color: rgba(0, 0, 0, 0.5);
 	backdrop-filter: blur(4px);
 }
-
-#newBookBtnTitle{
-
+#form-title{
+	margin: 0 auto;
+	text-align: center;
 }
 
-#clBtn{
+.labels{
+	font-weight: 800;
+	margin-bottom: 0.25em;
+}
+
+.inputs{
+	margin-bottom: 1em;
+	font-size: 1rem;
+	height: 1.75rem;
+}
+
+#newBookBtnTitle {
+}
+
+#subBtn{
+	width: 6em;
+	height: 2em;
+	background-color: var(--clr-accent);
+	color: #fff;
+	border-radius: 26px;
+	margin: 0 auto;
+	font-size: 1rem;
+}
+
+#clBtn {
 	position: relative;
-	bottom: 187px;
+	bottom: 362px;
 	left: 241px;
 	font-size: 2rem;
 	color: #fff;
 	cursor: pointer;
-
+	width: fit-content;
+	height: auto;
 }
 
-#clBtn:hover{
+#clBtn:hover {
 	color: #d11a2a;
 }
 /* 7. New book form inputs */
@@ -194,6 +214,7 @@ body {
 #add-book {
 	display: flex;
 	flex-direction: column;
+	padding: 0.5em 0.25em 1em 0.25em;
 }
 
 .remove-book {
@@ -208,6 +229,23 @@ body {
 	border: none;
 	background-color: inherit;
 	cursor: pointer;
+}
+
+/* 3.2 Delete book button layout */
+
+#bookDeleteButton {
+	position: absolute;
+	bottom: 195px;
+	left: 201px;
+	background-color: #fff;
+	border-radius: 10px;
+	padding: 0 1em;
+}
+
+#bookDeleteButton:hover{
+	background-color: #d11a2a;
+	color: #fff;
+	
 }
 
 /* 8. Book Read Checkmark */

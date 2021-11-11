@@ -1,4 +1,6 @@
 const container = document.querySelector("#container");
+const totalBooks = document.getElementById("total-books");
+const readBooks = document.getElementById("read-books");
 const newBookSection = document.getElementById("form-section");
 const newBookSubmitButton = document.getElementById("subBtn");
 const newBookCloseButton = document.getElementById("clBtn");
@@ -153,14 +155,16 @@ newBookSection.addEventListener("click", (e) => {
 
 
 newBookSubmitButton.addEventListener("click", function () {
-	const titleValue = document.getElementById("title").value;
+	const titleValue = document.getElementById("newBookBtnTitle").value;
 	const authorValue = document.getElementById("author").value;
 	const pagesValue = document.getElementById("pages").value;
 	const newBook = new book(titleValue, authorValue, pagesValue);
 	newBook.addBooks(newBook);
 	display(newBook, myLibrary.length + 1);
+	document.getElementById("add-book").reset()
 });
 
 newBookCloseButton.addEventListener("click", () => {
 	closeForm();
 });
+
