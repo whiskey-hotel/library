@@ -23,6 +23,10 @@ myLibrary.forEach((book, index) => {
 totalBooks.textContent = bookCount(myLibrary);
 readBooks.textContent = readBookCount(myLibrary);
 
+function instanceVariableNameGenerator(){
+
+}
+
 function book(title, author, pages) {
 	this.title = title;
 	this.author = author;
@@ -46,16 +50,16 @@ function readBookCount(obj) {
 
 book.prototype.addBooks = function (bookObj) {
 	myLibrary.push(bookObj);
-	document.getElementById("form-section").style.display = "none";
+	newBookSection.style.display = "none";
 	return;
 };
 
 function dataAttributeUpdate() {
 	let count = 0;
-	for (let d of Array.from(dataAtts)) {
+	Array.from(dataAtts).forEach((d) => {
 		d.dataset.value = count;
 		count += 1;
-	}
+	});
 }
 
 function removeBook(dataAttribute, el, childEl) {
@@ -169,6 +173,8 @@ function display(book, index) {
 	bookDetails.appendChild(check);
 }
 
+book.prototype.edit = function () {};
+
 function openForm() {
 	newBookSection.style.display = "flex";
 }
@@ -181,13 +187,14 @@ function closeForm() {
 newBookSection.addEventListener("click", (e) => {
 	if (!document.getElementById("form-container").contains(e.target)) {
 		newBookSection.style.display = "none";
+		document.getElementById("add-book").reset();
 	}
 });
 
 newBookForm.addEventListener("submit", function () {
-	const titleValue = newBookForm.elements['title'].value;
-	const authorValue = newBookForm.elements['author'].value;;
-	const pagesValue = newBookForm.elements['pages'].value;
+	const titleValue = newBookForm.elements["title"].value;
+	const authorValue = newBookForm.elements["author"].value;
+	const pagesValue = newBookForm.elements["pages"].value;
 	const newBook = new book(titleValue, authorValue, pagesValue);
 	newBook.addBooks(newBook);
 	display(newBook, myLibrary.length - 1);
@@ -197,4 +204,5 @@ newBookForm.addEventListener("submit", function () {
 
 newBookCloseButton.addEventListener("click", () => {
 	closeForm();
+	document.getElementById("add-book").reset();
 });

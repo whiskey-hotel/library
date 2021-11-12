@@ -43,7 +43,7 @@ body {
 .header {
 	display: flex;
 	align-items: center;
-	height: 15em;
+	height: 12em;
 	max-width: 100%;
 	margin-bottom: 1em;
 	border-radius: 10px 10px 0 0;
@@ -54,8 +54,8 @@ body {
 #title {
 	font-family: var(--font-italics);
 	font-weight: var(--font-weight-medium);
-	font-size: 5.5rem;
-	margin-left: 0.75em;
+	font-size: 6.75rem;
+	margin: 0 0 0 0.5em;
 }
 
 #stats {
@@ -68,7 +68,8 @@ body {
 	flex-direction: column;
 	height: auto;
 	width: fit-content;
-	border: 2px solid #fff;
+	border: 3px solid #fff;
+	padding: 0.5em;
 	white-space: nowrap;
 }
 
@@ -115,6 +116,7 @@ body {
 	border-radius: 26px;
 	margin-top: auto;
 	margin-bottom: calc(var(--check-height) * 2);
+	cursor: pointer;
 }
 
 /* 5. New book button */
@@ -124,7 +126,7 @@ body {
 	position: fixed;
 	bottom: 25px;
 	right: 25px;
-	font-size: 40px;
+	font-size: 50px;
 	z-index: 999;
 	cursor: pointer;
 	color: var(--clr-accent);
@@ -135,7 +137,7 @@ body {
 #add-book-button:hover,
 #add-book-button:focus {
 	transform: rotate(90deg);
-	font-size: 50px;
+	font-size: 60px;
 	/* box-shadow: 5px 6px 6px var(--shadow-neutral); */
 	filter: drop-shadow(5px 6px 6px var(--shadow-neutral));
 }
@@ -182,10 +184,6 @@ body {
 	height: 1.75rem;
 }
 
-#newBookBtnTitle {
-	
-}
-
 #subBtn{
 	width: 6em;
 	height: 2em;
@@ -194,6 +192,7 @@ body {
 	border-radius: 26px;
 	margin: 0 auto;
 	font-size: 1rem;
+	cursor: pointer;
 }
 
 #clBtn {
@@ -241,6 +240,7 @@ body {
 	background-color: #fff;
 	border-radius: 10px;
 	padding: 0 1em;
+	cursor: pointer;
 }
 
 #bookDeleteButton:hover{
