@@ -8,24 +8,13 @@ const newBookSubmitButton = document.getElementById("subBtn");
 const newBookCloseButton = document.getElementById("clBtn");
 
 let myLibrary = [
-	{ title: "Harry Potter and the Chamber of Secrets", author: "JK Rowling", pages: 251, read: false },
-	{ title: "Harry Potter and the Sorcerer's Stone", author: "JK Rowling", pages: 223, read: false },
-	{ title: "Harry Potter and the Prisoner of Azkaban", author: "JK Rowling", pages: 317, read: false },
-	{ title: "Harry Potter and the Goblet of Fire", author: "JK Rowling", pages: 636, read: false },
-	{ title: "Harry Potter and the Order of the Phoenix", author: "JK Rowling", pages: 766, read: false },
-	{ title: "The Outsiders", author: "S.E. Hinton", pages: 192, read: false },
+	new book("Harry Potter and the Chamber of Secrets", "JK Rowling", 251),
+	new book("Harry Potter and the Sorcerer's Stone", "JK Rowling", 223),
+	new book("Harry Potter and the Prisoner of Azkaban", "JK Rowling", 317),
+	new book("Harry Potter and the Goblet of Fire", "JK Rowling", 636),
+	new book("Harry Potter and the Order of the Phoenix", "JK Rowling", 766),
+	new book("The Outsiders", "S.E. Hinton", 192),
 ];
-
-myLibrary.forEach((book, index) => {
-	display(book, index);
-});
-
-totalBooks.textContent = bookCount(myLibrary);
-readBooks.textContent = readBookCount(myLibrary);
-
-function instanceVariableNameGenerator(){
-
-}
 
 function book(title, author, pages) {
 	this.title = title;
@@ -34,35 +23,13 @@ function book(title, author, pages) {
 	this.read = false;
 }
 
-function bookCount(obj) {
-	return obj.length;
-}
-
-function readBookCount(obj) {
-	let count = 0;
-	obj.forEach((index) => {
-		if (index.read) {
-			count += 1;
-		}
-	});
-	return count;
-}
-
-book.prototype.addBooks = function (bookObj) {
-	myLibrary.push(bookObj);
+book.prototype.addBooks = function () {
+	myLibrary.push(this);
 	newBookSection.style.display = "none";
 	return;
 };
 
-function dataAttributeUpdate() {
-	let count = 0;
-	Array.from(dataAtts).forEach((d) => {
-		d.dataset.value = count;
-		count += 1;
-	});
-}
-
-function removeBook(dataAttribute, el, childEl) {
+book.prototype.removeBook = function (dataAttribute, el, childEl) {
 	const index = parseInt(dataAttribute);
 	if (index > -1) {
 		myLibrary.splice(index, 1);
@@ -73,7 +40,7 @@ function removeBook(dataAttribute, el, childEl) {
 	dataAttributeUpdate();
 }
 
-function display(book, index) {
+book.prototype.display = function (index) {
 	const bookDetails = document.createElement("div");
 	bookDetails.classList.add("book");
 	bookDetails.setAttribute("data-value", index);
@@ -84,13 +51,13 @@ function display(book, index) {
 	bold.style.fontSize = "1.25rem";
 
 	const bookTitle = document.createElement("div");
-	bookTitle.textContent = book.title;
+	bookTitle.textContent = this.title;
 
 	const bookAuthor = document.createElement("div");
-	bookAuthor.textContent = `By: ${book.author}`;
+	bookAuthor.textContent = `By: ${this.author}`;
 
 	const bookPages = document.createElement("div");
-	bookPages.textContent = `${book.pages} Pages`;
+	bookPages.textContent = `${this.pages} Pages`;
 
 	const brk = document.createElement("br");
 
@@ -108,11 +75,11 @@ function display(book, index) {
 	});
 
 	bookRead.onclick = () => {
-		book.read = !book.read;
+		this.read = !this.read;
 		readBooks.textContent = readBookCount(myLibrary);
 
 		//animated checkmark for read books
-		if (book.read) {
+		if (this.read) {
 			check.style.display = "block";
 			bookRead.textContent = "Mark as unread";
 			bookRead.addEventListener("mouseover", () => {
@@ -150,7 +117,7 @@ function display(book, index) {
 	});
 
 	delBookButton.addEventListener("click", () => {
-		removeBook(bookDetails.dataset.value, container, bookDetails);
+		this.removeBook(bookDetails.dataset.value, container, bookDetails);
 		delBookButton.style.display = "none";
 	});
 
@@ -171,9 +138,32 @@ function display(book, index) {
 	bookDetails.appendChild(delBookIcon);
 	bookDetails.appendChild(delBookButton);
 	bookDetails.appendChild(check);
-}
+};
 
 book.prototype.edit = function () {};
+
+
+function bookCount(obj) {
+	return obj.length;
+}
+
+function readBookCount(obj) {
+	let count = 0;
+	obj.forEach((index) => {
+		if (index.read) {
+			count += 1;
+		}
+	});
+	return count;
+}
+
+function dataAttributeUpdate() {
+	let count = 0;
+	Array.from(dataAtts).forEach((d) => {
+		d.dataset.value = count;
+		count += 1;
+	});
+}
 
 function openForm() {
 	newBookSection.style.display = "flex";
@@ -196,9 +186,9 @@ newBookForm.addEventListener("submit", function () {
 	const authorValue = newBookForm.elements["author"].value;
 	const pagesValue = newBookForm.elements["pages"].value;
 	const newBook = new book(titleValue, authorValue, pagesValue);
-	newBook.addBooks(newBook);
-	display(newBook, myLibrary.length - 1);
-	document.getElementById("add-book").reset();
+	newBook.addBooks();
+	newBook.display(myLibrary.length - 1);
+	newBookForm.reset();
 	totalBooks.textContent = bookCount(myLibrary);
 });
 
@@ -206,3 +196,11 @@ newBookCloseButton.addEventListener("click", () => {
 	closeForm();
 	document.getElementById("add-book").reset();
 });
+
+//initial library display
+myLibrary.forEach((book, index) => {
+	book.display(index);
+});
+
+totalBooks.textContent = bookCount(myLibrary);
+readBooks.textContent = readBookCount(myLibrary);
