@@ -21,6 +21,9 @@
 	--check-top: 12.5em;
 	--check-thickness: 3px;
 	--check-color: #5cb85c;
+
+	/* Header */
+	--header-size: 12em;
 }
 
 /* Table of Contents */
@@ -168,23 +171,23 @@ body {
 	background-color: rgba(0, 0, 0, 0.5);
 	backdrop-filter: blur(4px);
 }
-#form-title{
+#form-title {
 	margin: 0 auto;
 	text-align: center;
 }
 
-.labels{
+.labels {
 	font-weight: 800;
 	margin-bottom: 0.25em;
 }
 
-.inputs{
+.inputs {
 	margin-bottom: 1em;
 	font-size: 1rem;
 	height: 1.75rem;
 }
 
-#subBtn{
+#subBtn {
 	width: 6em;
 	height: 2em;
 	background-color: var(--clr-accent);
@@ -243,10 +246,9 @@ body {
 	cursor: pointer;
 }
 
-#bookDeleteButton:hover{
+#bookDeleteButton:hover {
 	background-color: #d11a2a;
 	color: #fff;
-	
 }
 
 /* 8. Book Read Checkmark */
@@ -297,3 +299,72 @@ body {
 		opacity: 1;
 	}
 }
+
+@media screen and (max-width: 280px) {
+	.header {
+		flex-direction: column;
+		height: 10em;
+	}
+	#title {
+		font-size: 2.75rem;
+		margin: 0 auto;
+	}
+	#stats {
+		margin: 0 auto;
+	}
+	#bookDeleteButton {
+		left: 155px;
+	}
+	.checkmark:after {
+		left: calc(var(--check-left) * 0.822);
+	}
+	#form-container {
+		width: 13em;
+	}
+	#form-title {
+		font-size: 1.25em;
+	}
+	#clBtn {
+		left: 201px;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	.header {
+		flex-direction: column;
+		height: 10em;
+	}
+	#title {
+		font-size: 2.75rem;
+		margin: 0 auto;
+	}
+	#stats {
+		margin: 0 auto;
+	}
+}
+
+@media screen and (max-width: 414px) {
+	.header {
+		flex-direction: column;
+		height: 10em;
+	}
+	#title {
+		font-size: 2.95rem;
+		margin: 0 auto;
+	}
+	#stats {
+		margin: 0 auto;
+	}
+}
+
+/* @media screen and (max-width: 800px) {
+	#title {
+		font-size: 4.75rem;
+	}
+} */
+
+/* @media screen and (max-width: 900px) {
+	#title {
+		font-size: 5.75rem;
+	}
+} */

@@ -176,8 +176,8 @@ function closeForm() {
 //close "add new book" window if click is not on the form window
 newBookSection.addEventListener("click", (e) => {
 	if (!document.getElementById("form-container").contains(e.target)) {
-		newBookSection.style.display = "none";
-		document.getElementById("add-book").reset();
+		closeForm();
+		newBookForm.reset();
 	}
 });
 
@@ -194,7 +194,7 @@ newBookForm.addEventListener("submit", function () {
 
 newBookCloseButton.addEventListener("click", () => {
 	closeForm();
-	document.getElementById("add-book").reset();
+	newBookForm.reset();
 });
 
 //initial library display
