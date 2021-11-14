@@ -6,4 +6,4 @@ Give it a try <a href="">here</a>!
 
 <iframe src='https://gfycat.com/ifr/SoulfulCreativeGrouse' frameborder='0' scrolling='no' allowfullscreen width='640' height='415'></iframe>
 
-![2014-10-22 11_35_09](https://cloud.githubusercontent.com/assets/39191/4741874/9890757a-5a1a-11e4-9a71-3f64bd66b7ab.gif)
+![2014-10-22 11_35_09](https://gfycat.com/ifr/SoulfulCreativeGrouse)
