@@ -47,17 +47,19 @@ book.prototype.display = function (index) {
 
 	const bold = document.createElement("strong");
 	bold.textContent = "Title:";
-	bold.style.fontWeight = "900";
-	bold.style.fontSize = "1.25rem";
+	bold.classList.add("bookFontSizeStrong");
 
 	const bookTitle = document.createElement("div");
 	bookTitle.textContent = this.title;
+	bookTitle.classList.add("bookFontSize");
 
 	const bookAuthor = document.createElement("div");
 	bookAuthor.textContent = `By: ${this.author}`;
+	bookAuthor.classList.add("bookFontSize");
 
 	const bookPages = document.createElement("div");
 	bookPages.textContent = `${this.pages} Pages`;
+	bookPages.classList.add("bookFontSize");
 
 	const brk = document.createElement("br");
 
